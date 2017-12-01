@@ -2,9 +2,9 @@ package card;
 
 import java.util.ArrayList;
 
-public class GroupOfCards {
+public abstract class GroupOfCards {
 
-    private ArrayList<Card> cards = new ArrayList<Card>(52);
+    public ArrayList<Card> cards = new ArrayList<Card>();
     private int size = 0;
 
     public void removeCard(Card card) throws IllegalCardException {
