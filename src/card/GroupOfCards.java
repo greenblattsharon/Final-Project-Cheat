@@ -7,28 +7,23 @@ public class GroupOfCards {
     private ArrayList<Card> cards = new ArrayList<Card>(52);
     private int size = 0;
 
-    public void removeCard(Card card) throws IllegalCardException{
+    public void removeCard(Card card) throws IllegalCardException {
         int location = findCard(card);
-        if (isItEmpty()){
+        if (isItEmpty()) {
             throw new IllegalCardException("There are no cards in this deck");
-        }
-        else{
+        } else {
             if (location == -1) {
                 throw new IllegalCardException("This card is not in this deck: " + card.getSuit() + " " + card.getNumber());
-            }
-            else{
+            } else {
                 cards.remove(location);
                 size--;
             }
         }
-
-
     }
 
-    public void addCard(Card card) throws IllegalCardException{
+    public void addCard(Card card) throws IllegalCardException {
         int location = findCard(card);
-
-        if(location != -1 && card.equals(cards.get(location))){
+        if (location != -1) {
             throw new IllegalCardException("This card is already in the deck: " + card.getSuit() + " " + card.getNumber());
         }
 
