@@ -1,10 +1,11 @@
 package card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class GroupOfCards {
 
-    public ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<Card>();
     private int size = 0;
 
     public void removeCard(Card card) throws IllegalCardException {
@@ -52,6 +53,14 @@ public abstract class GroupOfCards {
         }
 
         return location;
+    }
+
+    public void shuffleCards(){
+        Collections.shuffle(cards);
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
 }
