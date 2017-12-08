@@ -19,4 +19,7 @@ public abstract class Player {
 
         return null;
     }
+
+    public abstract int[] getCardsToPlay();
+
 }
