@@ -1,4 +1,5 @@
 package card;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +13,16 @@ public class DeckTester {
 
     @Before
     public void setup(){deck = new Deck();}
+
+    /**
+     * Creating deck from factory will create instanceOf deck
+     */
+    @Test
+    public void correctInstanceFromFactory(){
+        DeckFactory df = new DeckFactory();
+        Deck fromFactory = df.createGroupOfCards();
+        Assert.assertTrue(fromFactory instanceof Deck);
+    }
 
     /**
      * Initializing Deck will create deck with 52 cards
@@ -50,7 +61,7 @@ public class DeckTester {
         Player player2 = new User();
         Player player3 = new User();
         Player player4 = new User();
-        
+
         Player[] players = new Player[4];
 
         players[0] = player1;
