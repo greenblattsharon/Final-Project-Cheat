@@ -22,6 +22,7 @@ public class DeckTester {
         DeckFactory df = new DeckFactory();
         Deck fromFactory = df.createGroupOfCards();
         Assert.assertTrue(fromFactory instanceof Deck);
+        
     }
 
     /**
