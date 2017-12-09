@@ -1,6 +1,6 @@
 package card;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
     public final static int ACE = 1,          // Codes for the non-numeric cards.
                             JACK = 11,        //   Cards 2 through 10 have their
@@ -21,5 +21,12 @@ public class Card {
 
     public Suit getSuit() {
         return suit;
+    }
+
+    // This method allows for an array to be sorted by number in ascending order
+    public int compareTo(Card compareCard){
+        int compareNumber = compareCard.getNumber();
+
+        return this.number - compareNumber;
     }
 }
