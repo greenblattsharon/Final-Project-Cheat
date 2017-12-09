@@ -23,11 +23,11 @@ public class Opponent extends Player {
     public double calculateOdds(int card_number, int multiple) throws IllegalMoveException{
         int count = haveCardInHand(card_number);
 
-        if(count > multiple){
+        int combination = count + multiple;
+
+        if(combination > 4){
             return TOTAL_CHANCE;
         }
-
-        int combination = count + multiple;
 
         switch (combination){
             case 4: return HIGH_CHANCE;
