@@ -67,6 +67,7 @@ public class Opponent extends Player {
         return odds * intelligence;
     }
 
+    @Override
     public int[] getCardsToPlay(int card_number) {
         int[] cards_indicies;
 
@@ -77,19 +78,18 @@ public class Opponent extends Player {
             int count_above = haveCardInHand(card_number + 1);
 
             if (count != 0) {
-                cards_indicies = getCardIndicies(card_number, count);
+                cards_indicies = getCardIndices(card_number, count);
                 return cards_indicies;
             }
             else if (count_below != 0){
-                cards_indicies = getCardIndicies(card_number - 1, count_below);
+                cards_indicies = getCardIndices(card_number - 1, count_below);
                 return cards_indicies;
             }
             else if(count_above != 0){
-                cards_indicies = getCardIndicies(card_number + 1, count_above);
+                cards_indicies = getCardIndices(card_number + 1, count_above);
                 return cards_indicies;
             }
             else{
-                //Will need something here to validate lie
                 return getLieCardsToPlay();
             }
 
@@ -108,7 +108,7 @@ public class Opponent extends Player {
         int count = haveCardInHand(card_number);
 
         if (count != 0){
-            return getCardIndicies(card_number, count);
+            return getCardIndices(card_number, count);
         }
 
         else{
@@ -118,11 +118,11 @@ public class Opponent extends Player {
             else{
                 count = rn.nextInt(getHand().getSize()) + 1;
             }
-            int[] card_indicies = new int[count];
+            int[] card_indices = new int[count];
             for (int i = 0; i < count; i++){
-                card_indicies[i] = i;
+                card_indices[i] = i;
             }
-            return card_indicies;
+            return card_indices;
         }
     }
 

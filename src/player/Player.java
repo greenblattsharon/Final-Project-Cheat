@@ -2,6 +2,7 @@ package player;
 
 import card.Card;
 import card.Hand;
+import card.IllegalCardException;
 
 import java.util.ArrayList;
 
@@ -17,23 +18,34 @@ public abstract class Player {
         return true;
     }
 
-    public Card[] playCards(int[] index){
+    public Card[] playCards(int[] index) throws IllegalCardException {
 
-        return null;
+        Card[] cards = new Card[index.length];
+
+        for(int i = 0; i < index.length; i++){
+            cards[i] = hand.getCards().get(index[i]);
+        }
+
+        for (Card card: cards){
+            hand.removeCard(card);
+        }
+
+        return cards;
     }
 
-    public int[] getCardIndicies(int card_number, int count){
-        int[] cards_indicies = new int[count];
+    public int[] getCardIndices(int card_number, int count){
+        int[] cards_indices = new int[count];
         int counter = 0;
         ArrayList<Card> cards = hand.getCards();
 
         for (int i = 0; i < hand.getSize(); i++) {
             if (cards.get(i).getNumber() == card_number) {
-                cards_indicies[counter] = i;
+                cards_indices[counter] = i;
                 counter++;
             }
         }
-        return cards_indicies;
+        return cards_indices;
     }
 
+    public abstract int[] getCardsToPlay(int last_card);
 }
