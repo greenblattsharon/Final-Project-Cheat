@@ -15,10 +15,11 @@ public class InitializeState implements GameState{
 
     public InitializeState(Game game) throws IllegalCardException{
         this.game = game;
-        initializeGame();
+        implementStateResponsibilities();
     }
 
-    private void initializeGame() throws IllegalCardException{
+    @Override
+    public void implementStateResponsibilities() throws IllegalCardException{
         game.turn = 0;
         game.cheat = false;
         game.lie = false;

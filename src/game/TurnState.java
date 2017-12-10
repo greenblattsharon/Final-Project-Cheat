@@ -14,7 +14,8 @@ public class TurnState implements GameState {
         this.game = game;
     }
 
-    public void playTurn() throws IllegalCardException {
+    @Override
+    public void implementStateResponsibilities() throws IllegalCardException {
         int[] card_indices;
         Card[] cards;
 
@@ -33,13 +34,15 @@ public class TurnState implements GameState {
         else{
             System.out.println("Your opponent has played " + cards.length + " cards of number " + game.last_card);
         }
-        
+
+        //TODO add code to implement calling Cheat
+
         if(game.players[game.turn].getHand().isItEmpty()){
             game.setCurrentState(new EndGameState());
         }
     }
 
-    private boolean wasTurnALie(Card[] cards) {
+    public boolean wasTurnALie(Card[] cards) {
 
         //If the cards are not all the same then it is an automatic lie
         if (!areAllCardsTheSame(cards)) {
@@ -64,7 +67,7 @@ public class TurnState implements GameState {
         }
     }
 
-    private boolean areAllCardsTheSame(Card[] cards) {
+    public boolean areAllCardsTheSame(Card[] cards) {
         for (Card card1 : cards) {
             for (Card card2 : cards) {
                 if (card1.compareTo(card2) != 0) {
@@ -75,7 +78,7 @@ public class TurnState implements GameState {
         return true;
     }
 
-    private int convertCardNumber(int card_number) {
+    public int convertCardNumber(int card_number) {
         if (card_number == 0) {
             return 13;
         }
@@ -87,7 +90,7 @@ public class TurnState implements GameState {
         }
     }
 
-    private int generateLastCardNumber(int card_number){
+    public int generateLastCardNumber(int card_number){
         int cn;
         if(game.turn == 0 && card_number == -1){
             System.out.println("You have lied. What card would you like to say you are playing? ");
@@ -111,11 +114,11 @@ public class TurnState implements GameState {
             cn = rn.nextInt(3) + 1;
             switch(cn){
                 case 1:
-                    return generateLastCardNumber(card_number -1);
+                    return convertCardNumber(card_number -1);
                 case 2:
                     return card_number;
                 case 3:
-                    return generateLastCardNumber(card_number + 1);
+                    return convertCardNumber(card_number + 1);
             }
 
         }
