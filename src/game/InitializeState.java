@@ -19,6 +19,11 @@ public class InitializeState implements GameState{
     }
 
     private void initializeGame() throws IllegalCardException{
+        game.turn = 0;
+        game.cheat = false;
+        game.lie = false;
+        game.last_card = -1;
+
         game.deck = (Deck) guiBuilder.buildGroupOfCards(new DeckFactory());
         game.deck.initializeDeck();
 
