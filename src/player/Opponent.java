@@ -67,7 +67,6 @@ public class Opponent extends Player {
         return odds * intelligence;
     }
 
-    @Override
     public int[] getCardsToPlay(int card_number) {
         int[] cards_indicies;
 

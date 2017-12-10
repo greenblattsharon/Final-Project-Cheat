@@ -22,8 +22,6 @@ public abstract class Player {
         return null;
     }
 
-    public abstract int[] getCardsToPlay(int card_number);
-
     public int[] getCardIndicies(int card_number, int count){
         int[] cards_indicies = new int[count];
         int counter = 0;
