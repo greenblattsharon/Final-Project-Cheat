@@ -7,6 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 public class UserTester {
     User user;
 
@@ -43,7 +46,26 @@ public class UserTester {
     }
 
     /**
-     * Calling get
+     * Calling getCardsToPlay returns int[] of card indices to play
      */
+    @Test
+    public void getCardsToPlayWorksCorrectly() throws IllegalCardException{
+        user.getHand().addCard(new Card(2, Suit.Club));
+        user.getHand().addCard(new Card(3, Suit.Club));
+        user.getHand().addCard(new Card(1, Suit.Diamond));
+        user.getHand().addCard(new Card(12, Suit.Club));
+        user.getHand().addCard(new Card(10, Suit.Club));
+        user.getHand().addCard(new Card(5, Suit.Diamond));
+
+        String stimulatedInput = "3 0 1 2 ";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
+
+        int[] cards = user.getCardsToPlay(-1);
+
+        Assert.assertArrayEquals("An array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
+    }
+
+
 
 }
