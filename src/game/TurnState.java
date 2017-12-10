@@ -22,11 +22,12 @@ public class TurnState implements GameState {
 
 
         }
-        cards = game.players[game.turn].playCards(card_indices);
+        /*cards = game.players[game.turn].playCards(card_indices);
 
         for (Card card : cards) {
             game.deck.addCard(card);
         }
+        */
 
     }
 

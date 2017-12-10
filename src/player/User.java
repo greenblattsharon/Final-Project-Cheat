@@ -17,7 +17,7 @@ public class User extends Player {
         Scanner sc = new Scanner(System.in);
 
         if (last_card != -1) {
-            System.out.println("The last card played was: " + last_card + " You can play that card, one above or one below.");
+            System.out.println("The last card played was: " + last_card + " \nYou can play that card, one above or one below.");
         } else {
             System.out.println("You can play any card value you want.");
         }

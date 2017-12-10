@@ -68,6 +68,7 @@ public class UserTester {
 
     /**
      * Calling getCardsToPlay returns int[] of card indices to play
+     * Putting in a too small size and then the correct size
      */
     @Test
     public void getCardsToPlayWorksCorrectlyTooSmallSize() throws IllegalCardException{
@@ -89,6 +90,7 @@ public class UserTester {
 
     /**
      * Calling getCardsToPlay returns int[] of card indices to play
+     * Putting in too large array size and then correct size
      */
     @Test
     public void getCardsToPlayWorksCorrectlyTooLargeSize() throws IllegalCardException{
@@ -110,6 +112,7 @@ public class UserTester {
 
     /**
      * Calling getCardsToPlay returns int[] of card indices to play
+     * Putting in an invalid index twice and then the correct index
      */
     @Test
     public void getCardsToPlayWorksCorrectlyInvalidIndex() throws IllegalCardException{
@@ -120,11 +123,11 @@ public class UserTester {
         user.getHand().addCard(new Card(10, Suit.Club));
         user.getHand().addCard(new Card(5, Suit.Diamond));
 
-        String stimulatedInput = "3 100 0 1 2 ";
+        String stimulatedInput = "3 100 -1 0 1 2 ";
         InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
         System.setIn(in);
 
-        int[] cards = user.getCardsToPlay(-1);
+        int[] cards = user.getCardsToPlay(1);
 
         Assert.assertArrayEquals("After putting in an incorrect card index, an array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
     }
