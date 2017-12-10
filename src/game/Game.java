@@ -6,11 +6,11 @@ import card.IllegalCardException;
 import player.Player;
 
 public class Game {
-    public Player turn;
-    public boolean cheat = false;
-    public boolean lie = false;
+    public int turn;
+    public boolean cheat;
+    public boolean lie;
 
-    public Card last_card = null;
+    public int last_card;
 
     public int level;
 
