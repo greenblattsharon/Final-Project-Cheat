@@ -11,6 +11,7 @@ public class User extends Player {
 
     @Override
     public int[] getCardsToPlay(int last_card) {
+        sort();
         getHand().printCards();
 
         Scanner sc = new Scanner(System.in);
