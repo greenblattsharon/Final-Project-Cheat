@@ -66,6 +66,69 @@ public class UserTester {
         Assert.assertArrayEquals("An array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
     }
 
+    /**
+     * Calling getCardsToPlay returns int[] of card indices to play
+     */
+    @Test
+    public void getCardsToPlayWorksCorrectlyTooSmallSize() throws IllegalCardException{
+        user.getHand().addCard(new Card(2, Suit.Club));
+        user.getHand().addCard(new Card(3, Suit.Club));
+        user.getHand().addCard(new Card(1, Suit.Diamond));
+        user.getHand().addCard(new Card(12, Suit.Club));
+        user.getHand().addCard(new Card(10, Suit.Club));
+        user.getHand().addCard(new Card(5, Suit.Diamond));
+
+        String stimulatedInput = "-1 3 0 1 2 ";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
+
+        int[] cards = user.getCardsToPlay(-1);
+
+        Assert.assertArrayEquals("After putting in the a too small array size, an array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
+    }
+
+    /**
+     * Calling getCardsToPlay returns int[] of card indices to play
+     */
+    @Test
+    public void getCardsToPlayWorksCorrectlyTooLargeSize() throws IllegalCardException{
+        user.getHand().addCard(new Card(2, Suit.Club));
+        user.getHand().addCard(new Card(3, Suit.Club));
+        user.getHand().addCard(new Card(1, Suit.Diamond));
+        user.getHand().addCard(new Card(12, Suit.Club));
+        user.getHand().addCard(new Card(10, Suit.Club));
+        user.getHand().addCard(new Card(5, Suit.Diamond));
+
+        String stimulatedInput = "7 3 0 1 2 ";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
+
+        int[] cards = user.getCardsToPlay(-1);
+
+        Assert.assertArrayEquals("After putting in a too large array size, an array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
+    }
+
+    /**
+     * Calling getCardsToPlay returns int[] of card indices to play
+     */
+    @Test
+    public void getCardsToPlayWorksCorrectlyInvalidIndex() throws IllegalCardException{
+        user.getHand().addCard(new Card(2, Suit.Club));
+        user.getHand().addCard(new Card(3, Suit.Club));
+        user.getHand().addCard(new Card(1, Suit.Diamond));
+        user.getHand().addCard(new Card(12, Suit.Club));
+        user.getHand().addCard(new Card(10, Suit.Club));
+        user.getHand().addCard(new Card(5, Suit.Diamond));
+
+        String stimulatedInput = "3 100 0 1 2 ";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
+
+        int[] cards = user.getCardsToPlay(-1);
+
+        Assert.assertArrayEquals("After putting in an incorrect card index, an array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
+    }
+
 
 
 }
