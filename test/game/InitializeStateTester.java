@@ -21,6 +21,8 @@ public class InitializeStateTester {
         Assert.assertTrue("Current state should be initialize state", game.getCurrentState() instanceof InitializeState);
     }
 
+
+
     /**
      * InitializeState initializes the deck
      */
@@ -50,4 +52,6 @@ public class InitializeStateTester {
         Assert.assertTrue("Third player has 13 cards", 13 == game.players[2].getHand().getSize());
         Assert.assertTrue("Fourth player has 13 cards", 13 == game.players[3].getHand().getSize());
     }
+
+
 }

@@ -42,4 +42,8 @@ public class UserTester {
         Assert.assertTrue("Last card should be 12", 12 == user.getHand().getCards().get(5).getNumber());
     }
 
+    /**
+     *
+     */
+
 }
