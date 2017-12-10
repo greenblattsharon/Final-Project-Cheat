@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class User extends Player {
 
-    public void sort(){
+    public void sort() {
         Collections.sort(getHand().getCards());
     }
 
@@ -15,10 +15,9 @@ public class User extends Player {
 
         Scanner sc = new Scanner(System.in);
 
-        if(last_card != -1) {
+        if (last_card != -1) {
             System.out.println("The last card played was: " + last_card + " You can play that card, one above or one below.");
-        }
-        else{
+        } else {
             System.out.println("You can play any card value you want.");
         }
 
@@ -26,8 +25,8 @@ public class User extends Player {
 
         int size = sc.nextInt();
 
-        while(size > getHand().getSize()){
-            System.out.println("Error! Error! You do not have that many cards in your hand" );
+        while (isValidSize(size)) {
+            System.out.println("Error! Error! This is not a valid size. Please try again.");
             System.out.println("Please enter how many cards you want to play: ");
             size = sc.nextInt();
         }
@@ -35,12 +34,12 @@ public class User extends Player {
         int[] card_indices = new int[size];
         int index;
 
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             System.out.println("Please enter index of card you would like to play: ");
             index = sc.nextInt();
 
-            while(index < 0 || index >= getHand().getSize()){
-                System.out.println("Error! Error! You cannot play a card at that index" );
+            while (index < 0 || index >= getHand().getSize()) {
+                System.out.println("Error! Error! You cannot play a card at that index");
                 System.out.println("Please enter another index to play: ");
                 index = sc.nextInt();
             }
@@ -50,5 +49,9 @@ public class User extends Player {
 
 
         return card_indices;
+    }
+
+    private boolean isValidSize(int size) {
+        return (size > getHand().getSize() || size <= 0 || size > 4);
     }
 }
