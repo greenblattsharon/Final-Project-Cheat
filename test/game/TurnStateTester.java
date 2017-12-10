@@ -77,6 +77,7 @@ public class TurnStateTester {
         game.turn = 1;
 
         int num = turnState.generateLastCardNumber(-1);
+        System.out.println(num);
 
         Assert.assertTrue("The returned int will be higher than 1", 1 <= num);
         Assert.assertTrue("The returned int will be lower than 13", 13 >= num);
@@ -87,6 +88,12 @@ public class TurnStateTester {
      */
     @Test
     public void randomNumberWithinGameParametersForValidMoveIsChose(){
+        game.turn = 1;
+
+        int num = turnState.generateLastCardNumber(5);
+        System.out.println(num);
+
+        Assert.assertTrue("The returned int will be 4,5, or 6", 4 == num || 5 == num|| 6 == num);
 
     }
 
