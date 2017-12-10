@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import player.User;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 public class TurnStateTester {
 
     Game game;
@@ -57,7 +60,13 @@ public class TurnStateTester {
      */
     @Test
     public void askUserToSetLast_Card(){
+        String stimulatedOutput = "5";
+        InputStream in = new ByteArrayInputStream(stimulatedOutput.getBytes());
+        System.setIn(in);
 
+        int num = turnState.generateLastCardNumber(-1);
+
+        Assert.assertTrue("The return int should be what the user set", 5 == num);
     }
 
     /**
@@ -65,7 +74,12 @@ public class TurnStateTester {
      */
     @Test
     public void randomNumberGeneratedWhenAnyCardIsValid(){
+        game.turn = 1;
 
+        int num = turnState.generateLastCardNumber(-1);
+
+        Assert.assertTrue("The returned int will be higher than 1", 1 <= num);
+        Assert.assertTrue("The returned int will be lower than 13", 13 >= num);
     }
 
     /**
