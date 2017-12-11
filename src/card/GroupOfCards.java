@@ -63,4 +63,9 @@ public abstract class GroupOfCards {
         return cards;
     }
 
+    public void removeAll(){
+        cards.removeAll(cards);
+        size = 0;
+    }
+
 }
