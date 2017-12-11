@@ -124,7 +124,10 @@ public class TurnStateTester {
      */
     @Test
     public void returnTrueLieWhenCardsAreDifferent(){
+        game.turn = 1;
+        Card[] card = new Card[]{new Card(3, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
 
+        Assert.assertTrue("There was a lie when all cards are not the same", turnState.wasTurnALie(card));
     }
 
     /**
@@ -132,7 +135,11 @@ public class TurnStateTester {
      */
     @Test
     public void returnFalseLieWhenCardsAreSameAndLast_CardIsAnything(){
+        game.turn = 1;
+        game.last_card = -1;
+        Card[] card = new Card[]{new Card(2, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
 
+        Assert.assertFalse("Return false when cards are the same and -1 is the last_card", turnState.wasTurnALie(card));
     }
 
     /**
@@ -141,6 +148,11 @@ public class TurnStateTester {
      */
     @Test
     public void returnFalseLieWhenCardsAreSameAndMoveValidWithLastCard(){
+        game.turn = 1;
+        game.last_card = 2;
+        Card[] card = new Card[]{new Card(2, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
+
+        Assert.assertFalse("Return false when cards are the same and the last card matches", turnState.wasTurnALie(card));
 
     }
 
@@ -149,6 +161,11 @@ public class TurnStateTester {
      */
     @Test
     public void returnTrueLieWhenCardsAreSameAndMoveNotValidWithLastCard(){
+        game.turn = 1;
+        game.last_card = 6;
+        Card[] card = new Card[]{new Card(2, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
+
+        Assert.assertTrue("Return true when cards are the same and the last card does not match", turnState.wasTurnALie(card));
 
     }
 
