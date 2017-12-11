@@ -1,6 +1,7 @@
 package player;
 
 import card.Card;
+
 import java.util.Random;
 
 public class Opponent extends Player {
@@ -46,11 +47,11 @@ public class Opponent extends Player {
     }
 
     private int haveCardInHand(int card_number) {
-        if(card_number == 0){
+        if (card_number == 0) {
             card_number = 13;
         }
 
-        if (card_number == 14){
+        if (card_number == 14) {
             card_number = 1;
         }
 
@@ -63,8 +64,13 @@ public class Opponent extends Player {
         return count;
     }
 
-    public double calculateCheat(double odds) {
-        return odds * intelligence;
+    @Override
+    public boolean callCheat(int last_card, int card_length) throws IllegalMoveException {
+        double random = Math.random();
+
+        double cheat = calculateOdds(last_card, card_length);
+
+        return cheat >= random;
     }
 
     @Override
@@ -80,46 +86,40 @@ public class Opponent extends Player {
             if (count != 0) {
                 cards_indicies = getCardIndices(card_number, count);
                 return cards_indicies;
-            }
-            else if (count_below != 0){
+            } else if (count_below != 0) {
                 cards_indicies = getCardIndices(card_number - 1, count_below);
                 return cards_indicies;
-            }
-            else if(count_above != 0){
+            } else if (count_above != 0) {
                 cards_indicies = getCardIndices(card_number + 1, count_above);
                 return cards_indicies;
-            }
-            else{
+            } else {
                 return getLieCardsToPlay();
             }
 
         }
         //What happens if any card can be played
-        else{
-             return getLieCardsToPlay();
+        else {
+            return getLieCardsToPlay();
         }
     }
 
-    private int[] getLieCardsToPlay(){
+    private int[] getLieCardsToPlay() {
 
         Random rn = new Random();
         int card_number = rn.nextInt(13) + 1;
 
         int count = haveCardInHand(card_number);
 
-        if (count != 0){
+        if (count != 0) {
             return getCardIndices(card_number, count);
-        }
-
-        else{
-            if(getHand().getSize() > 4) {
+        } else {
+            if (getHand().getSize() > 4) {
                 count = rn.nextInt(4) + 1;
-            }
-            else{
+            } else {
                 count = rn.nextInt(getHand().getSize()) + 1;
             }
             int[] card_indices = new int[count];
-            for (int i = 0; i < count; i++){
+            for (int i = 0; i < count; i++) {
                 card_indices[i] = i;
             }
             return card_indices;
