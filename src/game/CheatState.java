@@ -79,6 +79,14 @@ public class CheatState implements GameState{
             }
         }
 
+        game.turn++;
+        game.lie = false;
+        game.cheat = -1;
+
+        if (game.turn == 4) {
+            game.turn = 0;
+        }
+
         game.setCurrentState(new TurnState(game));
 
     }

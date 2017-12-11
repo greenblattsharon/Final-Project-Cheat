@@ -45,12 +45,15 @@ public class TurnState implements GameState {
                     case 1:
                         opponents[0] = 2;
                         opponents[1] = 3;
+                        break;
                     case 2:
                         opponents[0] = 1;
                         opponents[1] = 3;
+                        break;
                     case 3:
                         opponents[0] = 1;
                         opponents[1] = 2;
+                        break;
                 }
 
                 game.cheat = whoCallsCheat(opponents, cards.length);
@@ -66,11 +69,11 @@ public class TurnState implements GameState {
 
         if (game.cheat != -1) {
             game.setCurrentState(new CheatState(game));
-            game.getCurrentState().implementStateResponsibilities();
+            return;
         }
 
         if (game.players[game.turn].getHand().isItEmpty()) {
-            game.setCurrentState(new EndGameState(game));
+            return;
         }
 
         game.turn++;
@@ -183,9 +186,10 @@ public class TurnState implements GameState {
         //None of the opponents want to call Cheat
         if (count == 0) {
             return -1;
-        } else {
+        } else { //Otherwise
             if (count == cheat_eval.length) {
-                int decider = rn.nextInt(3);
+                int decider = rn.nextInt(cheat_eval.length);
+                System.out.println(decider);
                 return opponents[decider];
             } else {
                 for (int i = 0; i < cheat_eval.length; i++) {

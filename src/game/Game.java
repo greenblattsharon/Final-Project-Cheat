@@ -35,6 +35,20 @@ public class Game {
         this.currentState = gameState;
     }
 
+    public void printSystemStats(){
+        System.out.println("\n System stats: \n");
+        for(Player player: players){
+            System.out.println(player.getClass());
+            player.getHand().printCards();
+            System.out.println("Size of hand: " + player.getHand().getSize());
+            System.out.println();
+        }
+        System.out.println("Deck size is: " + deck.getSize());
+        System.out.println("Turn is: " + turn);
+        System.out.println("Cheat is: " + cheat);
+        System.out.println("Lie is: " + lie);
+    }
+
     public static void main(String[] args) throws IllegalCardException, IllegalMoveException {
         Scanner sc = new Scanner(System.in);
 
@@ -45,7 +59,11 @@ public class Game {
 
         while(!(game.getCurrentState() instanceof EndGameState)){
             game.getCurrentState().implementStateResponsibilities();
+            game.printSystemStats();
         }
+
+        //Will call EndGameState
+        game.getCurrentState().implementStateResponsibilities();
 
 
     }
