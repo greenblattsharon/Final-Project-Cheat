@@ -71,6 +71,9 @@ public class CheatStateTester {
 
         game.getCurrentState().implementStateResponsibilities();
 
+        game.turn = 0;
+        game.cheat = 1;
+
         Assert.assertTrue("Player Cheat should have hand of size 14", 14 == game.players[game.cheat].getHand().getSize());
         Assert.assertTrue("Deck will have size of zero", 0 == game.deck.getSize());
     }
@@ -95,6 +98,25 @@ public class CheatStateTester {
         game.getCurrentState().implementStateResponsibilities();
 
         Assert.assertTrue("CurrentState should be EndGameState", game.getCurrentState() instanceof EndGameState);
+    }
 
+    /**
+     * After the cheat stuff has been figured out, the last card is reset so any card is played
+     */
+    @Test
+    public void lastCardIsReset() throws IllegalMoveException, IllegalCardException {
+        game.turn = 0;
+        game.cheat = 1;
+        game.lie = false;
+
+        ArrayList<Card> cards_turn = game.players[game.turn].getHand().getCards();
+
+        Card card = cards_turn.get(0);
+        game.players[game.turn].getHand().removeCard(card);
+        game.deck.addCard(card);
+
+        game.getCurrentState().implementStateResponsibilities();
+
+        Assert.assertTrue("The last_card should be -1", -1 == game.last_card);
     }
 }

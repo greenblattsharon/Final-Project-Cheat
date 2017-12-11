@@ -82,6 +82,7 @@ public class CheatState implements GameState{
         game.turn++;
         game.lie = false;
         game.cheat = -1;
+        game.last_card = -1;
 
         if (game.turn == 4) {
             game.turn = 0;
