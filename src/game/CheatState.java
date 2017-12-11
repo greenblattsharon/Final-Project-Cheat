@@ -28,8 +28,9 @@ public class CheatState implements GameState{
 
            for(Card card: cards){
                hand.addCard(card);
-               game.deck.removeCard(card);
            }
+
+           game.deck.removeAll();
 
         }
 
@@ -38,8 +39,9 @@ public class CheatState implements GameState{
 
             for(Card card: cards){
                 hand.addCard(card);
-                game.deck.removeCard(card);
             }
+
+            game.deck.removeAll();
         }
 
         game.setCurrentState(new TurnState(game));
