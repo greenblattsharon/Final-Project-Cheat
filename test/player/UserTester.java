@@ -132,6 +132,22 @@ public class UserTester {
         Assert.assertArrayEquals("After putting in an incorrect card index, an array of the first 3 cards should be returned", new int[]{0, 1, 2}, cards);
     }
 
+    /**
+     * When asked to call cheat, if the user says yes then true is returned
+     */
+    @Test
+    public void theUserWantsToCallCheat(){
+
+    }
+
+    /**
+     * When asked to call cheat, if the user says no then false is returned
+     */
+    @Test
+    public void theUserDoesNotWantToCallCheat(){
+        
+    }
+
 
 
 }
