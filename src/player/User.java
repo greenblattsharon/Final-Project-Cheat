@@ -55,4 +55,18 @@ public class User extends Player {
     private boolean isValidSize(int size) {
         return (size > getHand().getSize() || size <= 0 || size > 4);
     }
+
+    public boolean callCheat(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Would you like to call cheat? Yes/No");
+
+        String answer = sc.next();
+
+        switch(answer){
+            case "Yes": return true;
+            case "No" : return false;
+            default: System.out.println("You didn't type in a correct answer so I am assuming that you mean no. Good day!");
+            return false;
+        }
+    }
 }
