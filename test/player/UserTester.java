@@ -137,7 +137,11 @@ public class UserTester {
      */
     @Test
     public void theUserWantsToCallCheat(){
+        String stimulatedInput = "Yes";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
 
+        Assert.assertTrue("User wants to call cheat", user.callCheat());
     }
 
     /**
@@ -145,7 +149,12 @@ public class UserTester {
      */
     @Test
     public void theUserDoesNotWantToCallCheat(){
-        
+        String stimulatedInput = "No";
+        InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
+        System.setIn(in);
+
+        Assert.assertFalse("User does not want to call cheat", user.callCheat());
+
     }
 
 
