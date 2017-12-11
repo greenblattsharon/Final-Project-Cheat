@@ -42,6 +42,11 @@ public class CheatState implements GameState{
             }
 
             game.deck.removeAll();
+
+            if(game.players[game.turn].getHand().isItEmpty()){
+                game.setCurrentState(new EndGameState(game));
+                return;
+            }
         }
 
         game.setCurrentState(new TurnState(game));
