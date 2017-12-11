@@ -3,7 +3,10 @@ package game;
 import card.Card;
 import card.Deck;
 import card.IllegalCardException;
+import player.IllegalMoveException;
 import player.Player;
+
+import java.util.Scanner;
 
 public class Game {
     public int turn;
@@ -30,6 +33,21 @@ public class Game {
 
     public void setCurrentState(GameState gameState){
         this.currentState = gameState;
+    }
+
+    public static void main(String[] args) throws IllegalCardException, IllegalMoveException {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("What level would you like to play? Please pick between 1 and 7");
+        int level = sc.nextInt();
+
+        Game game = new Game(level);
+
+        while(!(game.getCurrentState() instanceof EndGameState)){
+            game.getCurrentState().implementStateResponsibilities();
+        }
+
+
     }
 
 

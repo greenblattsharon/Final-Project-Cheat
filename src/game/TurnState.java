@@ -32,7 +32,7 @@ public class TurnState implements GameState {
         if (game.turn == 0) {
             System.out.println("You have played " + cards.length + " cards of number " + game.last_card);
         } else {
-            System.out.println("Your opponent has played " + cards.length + " cards of number " + game.last_card);
+            System.out.println("Opponent " + game.turn + " has played " + cards.length + " cards of number " + game.last_card);
         }
 
         if (game.turn != 0) {
@@ -55,6 +55,7 @@ public class TurnState implements GameState {
 
                 game.cheat = whoCallsCheat(opponents, cards.length);
             }
+        } else {
 
             int[] opponents = new int[3];
             opponents[0] = 1;
@@ -65,11 +66,19 @@ public class TurnState implements GameState {
 
         if (game.cheat != -1) {
             game.setCurrentState(new CheatState(game));
-            return;
+            game.getCurrentState().implementStateResponsibilities();
         }
 
         if (game.players[game.turn].getHand().isItEmpty()) {
             game.setCurrentState(new EndGameState(game));
+        }
+
+        game.turn++;
+        game.lie = false;
+        game.cheat = -1;
+
+        if (game.turn == 4) {
+            game.turn = 0;
         }
     }
 

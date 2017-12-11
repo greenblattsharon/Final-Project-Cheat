@@ -12,6 +12,6 @@ public class EndGameState implements GameState {
 
     @Override
     public void implementStateResponsibilities() throws IllegalCardException {
-
+        System.out.println("The game has been won!!!!!!!!!");
     }
 }

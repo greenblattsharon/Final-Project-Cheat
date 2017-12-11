@@ -23,7 +23,26 @@ public class CheatState implements GameState{
             throw new IllegalMoveException("Cheat was improperly called");
         }
 
+        if(game.cheat == 0){
+            System.out.println("You have called Cheat on Opponent " + game.turn);
+        }
+        else {
+            if (game.turn == 0) {
+                System.out.println("Opponent " + game.cheat + " has called Cheat on you!");
+            }
+            else{
+                System.out.println("Opponent " + game.cheat + " has called Cheat on Opponent " + game.turn);
+            }
+        }
+
         if(game.lie){
+            if(game.turn == 0){
+                System.out.println("Opponent " + game.cheat + " caught your lie! You pick up the deck.");
+            }
+            else{
+                System.out.println("Opponent " + game.turn + " was caught lying! He picks up the deck.");
+            }
+
            hand = game.players[game.turn].getHand();
 
            for(Card card: cards){
@@ -35,6 +54,17 @@ public class CheatState implements GameState{
         }
 
         else{
+            if(game.turn == 0){
+                System.out.println("Opponent " + game.cheat + " wrongly accused you of Cheating! He picks up the deck.");
+            }
+            else{
+                if(game.cheat == 0) {
+                    System.out.println("You were wrong about Opponent " + game.turn + " cheating. You pick up the deck.");
+                }
+                else{
+                    System.out.println("Opponent " + game.cheat + " was wrong about Cheat on Opponent " + game.turn + ". He picks up the deck.");
+                }
+            }
             hand = game.players[game.cheat].getHand();
 
             for(Card card: cards){
