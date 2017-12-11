@@ -78,7 +78,6 @@ public class OpponentTester {
         opponent.getHand().addCard(new Card(1, Suit.Club));
         Assert.assertTrue("Having one card in hand three of the same number card will return odds of .25", .25 == opponent.calculateOdds(1,1));
     }
-    
 
     /**
      * With play card number 1 and two 1 cards in the hand, getCardsToPlay will return index of the one cards
