@@ -21,7 +21,7 @@ public class InitializeState implements GameState{
     @Override
     public void implementStateResponsibilities() throws IllegalCardException{
         game.turn = 0;
-        game.cheat = false;
+        game.cheat = -1;
         game.lie = false;
         game.last_card = -1;
 
@@ -34,6 +34,7 @@ public class InitializeState implements GameState{
         game.players[3] = (Opponent) guiBuilder.buildPlayer(new OpponentFactory(), (game.level * .1) + .2);
 
         game.deck.dealCards(game.players);
+        game.setCurrentState(new TurnState(game));
 
     }
 

@@ -19,8 +19,6 @@ public class TurnStateTester {
     @Before
     public void setup() throws IllegalCardException {
         game = new Game(1);
-        turnState = new TurnState(game);
-        game.setCurrentState(turnState);
     }
 
     /**
@@ -169,5 +167,5 @@ public class TurnStateTester {
         Assert.assertTrue("Return true when cards are the same and the last card does not match", turnState.wasTurnALie(card));
 
     }
-    
+
 }

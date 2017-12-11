@@ -35,7 +35,7 @@ public class TurnState implements GameState {
             System.out.println("Your opponent has played " + cards.length + " cards of number " + game.last_card);
         }
 
-        //TODO add code to implement calling Cheat
+
 
         if(game.players[game.turn].getHand().isItEmpty()){
             game.setCurrentState(new EndGameState());

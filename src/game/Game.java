@@ -7,7 +7,7 @@ import player.Player;
 
 public class Game {
     public int turn;
-    public boolean cheat;
+    public int cheat;
     public boolean lie;
 
     public int last_card;
