@@ -136,24 +136,24 @@ public class UserTester {
      * When asked to call cheat, if the user says yes then true is returned
      */
     @Test
-    public void theUserWantsToCallCheat(){
+    public void theUserWantsToCallCheat() throws IllegalMoveException{
         String stimulatedInput = "Yes";
         InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
         System.setIn(in);
 
-        Assert.assertTrue("User wants to call cheat", user.callCheat());
+        Assert.assertTrue("User wants to call cheat", user.callCheat(0,0));
     }
 
     /**
      * When asked to call cheat, if the user says no then false is returned
      */
     @Test
-    public void theUserDoesNotWantToCallCheat(){
+    public void theUserDoesNotWantToCallCheat() throws IllegalMoveException{
         String stimulatedInput = "No";
         InputStream in = new ByteArrayInputStream(stimulatedInput.getBytes());
         System.setIn(in);
 
-        Assert.assertFalse("User does not want to call cheat", user.callCheat());
+        Assert.assertFalse("User does not want to call cheat", user.callCheat(0, 0 ));
 
     }
 
