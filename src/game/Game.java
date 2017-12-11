@@ -35,6 +35,7 @@ public class Game {
         this.currentState = gameState;
     }
 
+    //This was used for final testing
     public void printSystemStats(){
         System.out.println("\n System stats: \n");
         for(Player player: players){
