@@ -78,17 +78,7 @@ public class OpponentTester {
         opponent.getHand().addCard(new Card(1, Suit.Club));
         Assert.assertTrue("Having one card in hand three of the same number card will return odds of .25", .25 == opponent.calculateOdds(1,1));
     }
-
-    /**
-     * Having odds of 1 and intelligence of .1 will return cheat of .1
-     */
-    @Test
-    public void oddsOfOneAndIntelligenceOfPointOneReturnsCheatOfPointOne() throws IllegalMoveException, IllegalCardException {
-        opponent = new Opponent(.1);
-        opponent.getHand().addCard(new Card(1, Suit.Club));
-        double odds = opponent.calculateOdds(1, 4);
-        Assert.assertTrue("Having one card in hand and four of the same number card will return cheat of .1", .1 == opponent.calculateCheat(odds));
-    }
+    
 
     /**
      * With play card number 1 and two 1 cards in the hand, getCardsToPlay will return index of the one cards
