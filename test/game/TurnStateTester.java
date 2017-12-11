@@ -1,6 +1,8 @@
 package game;
 
+import card.Card;
 import card.IllegalCardException;
+import card.Suit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -102,7 +104,9 @@ public class TurnStateTester {
      */
     @Test
     public void returnTrueWhenAllCardsAreTheSame(){
+        Card[] card = new Card[]{new Card(2, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
 
+        Assert.assertTrue("All cards are the same", turnState.areAllCardsTheSame(card));
     }
 
     /**
@@ -110,7 +114,9 @@ public class TurnStateTester {
      */
     @Test
     public void returnFalseWhenCardsAreDifferent(){
+        Card[] card = new Card[]{new Card(3, Suit.Diamond), new Card(2, Suit.Club), new Card(2, Suit.Heart), new Card(2, Suit.Spade)};
 
+        Assert.assertFalse("The cards are not the same", turnState.areAllCardsTheSame(card));
     }
 
     /**
